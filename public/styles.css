@@ -1,0 +1,66 @@
+#dropContainer{
+    position: absolute;
+    border:1px 
+    solid black;
+    height:500px;
+    width:850px;
+    right:350px;
+    top:20px;
+    z-index: 1;
+}
+
+
+.preview{
+    position: absolute;
+    border:1px 
+    solid black;
+    height:500px;
+    width:850px;
+    right:350px;
+    top:20px;
+    z-index:-1;
+}
+.linkInput{
+    position: absolute;
+    top:560px;
+    height: 40px;
+    left: 220px;
+    width:760px;
+    border-radius: 6px;
+}
+
+
+.imageInput{
+   position: relative;
+    top:530px;
+    left:220px;
+   
+    width:95px;
+ 
+    
+
+}
+
+.previewButton{
+    position: absolute;
+    top:530px;
+    right:350px;
+    height: 22px;
+}
+.info{
+    position: absolute;
+    top:530px;
+    right:700px;
+    height: 22px;
+    font-size: 15px;
+}
+
+.submitButton{
+    position: absolute;
+    top:560px;
+    right:350px;
+    height: 40px;
+    width: 80px;
+    background-color: rgb(49, 128, 233);
+    border-radius: 6px;
+}
