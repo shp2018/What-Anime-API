@@ -19,7 +19,12 @@ export default class Home extends React.Component {
       at:[],
       thumbnailData:[],
       videoData:[],
-      
+      isLoading: false,
+      class: "",
+      info:"",
+      name:"",
+      link : "",
+      click : "",
        
     };
   }
@@ -55,14 +60,20 @@ export default class Home extends React.Component {
 
   handleLink(e) {
     this.setState({
-      imageLink: e.target.value
+      imageLink: e.target.value,
+      isLoading: true,
     });
   }
 
   handleKeyDown(e) {
     if (e.key === 'Enter') {
       this.handleAnime();
+      
+      this.setState({
+        isLoading: true,
+      });
     }   
+    
   }
     
 
@@ -76,7 +87,8 @@ export default class Home extends React.Component {
       .then(res => {
         console.log(res); 
         this.setState({
-          animeData: res.data.docs
+          animeData: res.data.docs,
+          isLoading: true
         });
         this.handleAnimeData();
         this.handleThumbnail();
@@ -178,11 +190,15 @@ fetch("https://trace.moe/api/search", {
   
     let animeName = this.state.animeData.slice(0, 1).map(x => x.title_english);
     this.setState({
-      animeName: animeName
+      animeName: animeName,
+      name: "Anime:",
+      info: "For more info about this anime :"
     });
     let malId = this.state.animeData.slice(0, 1).map(x => x.mal_id);
     this.setState({
       malId: malId,
+      link : "https://myanimelist.net/anime/",
+     
       
     });
     let tokenthumb = this.state.animeData.slice(0, 1).map(x => x.tokenthumb);
@@ -203,6 +219,7 @@ fetch("https://trace.moe/api/search", {
     let anilist_id = this.state.animeData.slice(0, 1).map(x => x.anilist_id);
     this.setState({
       anilist_id: anilist_id,
+     
       
     });
 
@@ -213,11 +230,15 @@ fetch("https://trace.moe/api/search", {
   
     let animeName = this.state.animeData2.slice(0, 1).map(x => x.title_english);
     this.setState({
-      animeName: animeName
+      animeName: animeName,
+      name: "Anime:",
+      info: "For more info about this anime :"
     });
     let malId = this.state.animeData2.slice(0, 1).map(x => x.mal_id);
     this.setState({
       malId: malId,
+      link: "https://myanimelist.net/anime/",
+      click: "click here"
      
     });
     let tokenthumb = this.state.animeData2.slice(0, 1).map(x => x.tokenthumb);
@@ -245,7 +266,7 @@ fetch("https://trace.moe/api/search", {
   }
  
 
- 
+
   
   
 
@@ -253,6 +274,11 @@ fetch("https://trace.moe/api/search", {
 
 
   render() {
+   
+      
+
+    
+   
     return (
       <div>
   <div>
@@ -285,19 +311,14 @@ fetch("https://trace.moe/api/search", {
 
       </div>
       <img className="preview" src={this.state.imageLink}></img>
-      <div>
-               {this.state.animeName}
-              
-               
-
-               
-                
+      
+      
+      <div className="animeTitle">
+                {this.state.name} {this.state.animeName}
                 </div>
-                {this.state.malId}
-                <div>
-               
-                 
                 
+                <div className="animeLink">    
+                {this.state.info} <a href={this.state.link + this.state.malId}>click here</a>           
                 </div>
                 
                <div>
@@ -309,6 +330,10 @@ fetch("https://trace.moe/api/search", {
       </div>
     );
   }
+  
+
+
+
 }
 
 module.exports = Home;
